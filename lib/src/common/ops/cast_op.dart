@@ -5,7 +5,7 @@ import 'package:tflite_flutter_helper/src/tensorbuffer/tensorbuffer.dart';
 
 /// Casts a [TensorBuffer] to a specified data type.
 class CastOp implements TensorOperator {
-  late TfLiteType _destinationType;
+  late int _destinationType;
 
   /// Constructs a CastOp.
   ///
@@ -17,10 +17,10 @@ class CastOp implements TensorOperator {
   ///
   /// Throws [ArgumentError] if [destinationType] is neither [TfLiteType.float32]
   /// nor [TfLiteType.uint8].
-  CastOp(TfLiteType destinationType) {
+  CastOp(int destinationType) {
     SupportPreconditions.checkArgument(
-        destinationType == TfLiteType.uint8 ||
-            destinationType == TfLiteType.float32,
+        destinationType == TfLiteType.kTfLiteUInt8 ||
+            destinationType == TfLiteType.kTfLiteFloat32,
         errorMessage: "Destination Type " +
             destinationType.toString() +
             " is not supported");
